@@ -84,6 +84,9 @@ class _DonationDetailsScreenState extends State<DonationDetailsScreen> {
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Text(
                             'Amount Donated :$amountDonated ',
                             style: TextStyle(

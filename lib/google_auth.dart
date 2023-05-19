@@ -78,6 +78,7 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFfeb800),
         title: Text('Google Login'),
       ),
       body: Center(
@@ -90,6 +91,8 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Color(0xFFfeb800))),
               onPressed: _handleGoogleSignIn,
               child: Text('Sign In'),
             ),

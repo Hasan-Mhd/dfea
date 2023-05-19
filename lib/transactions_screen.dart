@@ -25,6 +25,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFfeb800),
         title: Text('Transaction History'),
       ),
       body: StreamBuilder<QuerySnapshot>(
