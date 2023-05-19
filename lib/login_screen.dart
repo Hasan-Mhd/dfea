@@ -104,15 +104,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 70,
                       buttonType: SocialLoginButtonType.google,
                       onPressed: () async {
-                        await FirebaseServices().signInWithGoogle();
-                        Navigator.pushNamed(context, DonationScreen.id);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GoogleLoginScreen()));
                       }),
-                  SocialLoginButton(
-                      borderRadius: 50,
-                      text: "",
-                      height: 70,
-                      buttonType: SocialLoginButtonType.facebook,
-                      onPressed: () {}),
                 ],
               )
             ],

@@ -3,10 +3,12 @@ import 'package:dfea2/component/donation_form.dart';
 import 'package:dfea2/donation_list_screen.dart';
 import 'package:dfea2/donation_screen.dart';
 import 'package:dfea2/home_page.dart';
+import 'package:dfea2/profile_screen.dart';
 import 'package:dfea2/signup_screen.dart';
 import 'package:dfea2/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
+import 'admin_login_screen.dart';
 import 'login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.id: (context) => SplashScreen(),
         HomePage.id: (context) => HomePage(),
+        AdminLoginScreen.id: (context) => AdminLoginScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         SignupScreen.id: (context) => SignupScreen(),
         DonationScreen.id: (context) => DonationScreen(),

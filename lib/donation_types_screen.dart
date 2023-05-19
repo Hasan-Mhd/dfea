@@ -20,6 +20,11 @@ class PaymentTypes extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                      Color(0xFFfeb800),
+                    ),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -33,6 +38,11 @@ class PaymentTypes extends StatelessWidget {
                   child: Text('One Time Donation'),
                 ),
                 ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                        Color(0xFFfeb800),
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,

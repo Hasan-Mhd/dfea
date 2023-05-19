@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dfea2/donation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
@@ -46,7 +47,19 @@ class _OneTimePaymentState extends State<OneTimePayment> {
       'paymentId': paymentId,
       'orderId': orderId,
       'signature': signature,
-      'userId': widget.donation['userId'], // Replace with the actual user ID
+      'userId': widget.donation['userId'],
+      'amount': int.tryParse(_amountController.text) ?? 0,
+      'timestamp': Timestamp.now(),
+      // Replace with the actual user ID
+    });
+    int currentAmount = widget.donation['amountDonated'];
+    int amount = int.tryParse(_amountController.text) ?? 0;
+    int sum = currentAmount + amount;
+    FirebaseFirestore.instance
+        .collection('donations')
+        .doc(widget.donation.id)
+        .update({
+      'amountDonated': sum,
     });
 
     // Show success message or navigate to a success screen
@@ -102,7 +115,14 @@ class _OneTimePaymentState extends State<OneTimePayment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFfeb800),
         title: Text('Donation Type'),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => DonationScreen()));
+            },
+            icon: Icon(Icons.arrow_back)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -123,6 +143,11 @@ class _OneTimePaymentState extends State<OneTimePayment> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(
+                  Color(0xFFfeb800),
+                ),
+              ),
               onPressed: _startPayment,
               child: Text('Donate Now'),
             ),

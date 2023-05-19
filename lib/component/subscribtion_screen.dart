@@ -114,6 +114,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFfeb800),
         title: Text('Monthly Subscription'),
       ),
       body: Center(
@@ -138,6 +139,11 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(
+                  Color(0xFFfeb800),
+                ),
+              ),
               onPressed: _startPayment,
               child: Text('Subscribe Now'),
             ),

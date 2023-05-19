@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfea2/component/donation_form.dart';
 import 'package:dfea2/donation_list_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'component/main_drawer.dart';
 
 class DonationScreen extends StatefulWidget {
@@ -12,6 +15,15 @@ class DonationScreen extends StatefulWidget {
 }
 
 class _DonationScreenState extends State<DonationScreen> {
+  @override
+  void dispose() {
+    FirebaseAuth.instance.signOut();
+    GoogleSignIn().signOut();
+
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   // final GlobalKey<ScaffoldState> _sKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -19,6 +31,10 @@ class _DonationScreenState extends State<DonationScreen> {
       child: Scaffold(
         drawer: MainDrawer(),
         appBar: AppBar(
+          title: Text(
+            'Donations',
+            style: TextStyle(color: Colors.black),
+          ),
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           elevation: 0,

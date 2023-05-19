@@ -440,7 +440,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           onTap: () async {
                             setState(() {
-                              showSpinner = true;
+                              Navigator.pushNamed(context, LoginScreen.id);
                             });
                           },
                         )

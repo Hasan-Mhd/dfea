@@ -138,6 +138,7 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFfeb800),
         title: Text('Donation Form'),
       ),
       body: Padding(
@@ -244,6 +245,11 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
               ),
               SizedBox(height: 16),
               ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    Color(0xFFfeb800),
+                  ),
+                ),
                 onPressed: _pickFile,
                 child: Text('Upload Document'),
               ),
@@ -254,6 +260,11 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
                       style: TextStyle(color: Colors.greenAccent)),
                 ),
               ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    Color(0xFFfeb800),
+                  ),
+                ),
                 onPressed: _pickPhoto,
                 child: Text('Upload photo'),
               ),
@@ -267,6 +278,11 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
                 ),
               SizedBox(height: 5),
               ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    Color(0xFFfeb800),
+                  ),
+                ),
                 onPressed: _submitForm,
                 child: Text('Submit Donation'),
               ),

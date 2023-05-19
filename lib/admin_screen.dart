@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfea2/component/pdf_viewer_method.dart';
+import 'package:dfea2/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,10 +11,15 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 
-class AdminScreen extends StatelessWidget {
+class AdminScreen extends StatefulWidget {
   static const String id = 'AdminScreen';
   const AdminScreen({Key? key}) : super(key: key);
 
+  @override
+  State<AdminScreen> createState() => _AdminScreenState();
+}
+
+class _AdminScreenState extends State<AdminScreen> {
   Future<String?> getDocumentUrl(String documentId) async {
     final ref =
         FirebaseStorage.instance.ref('donations/$documentId/$documentId');
@@ -72,11 +79,33 @@ class AdminScreen extends StatelessWidget {
     }
   }
 
+  Future<void> signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      print('Error signing out: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Donation Requests'),
+        title: Text('Donation Requests'),
+        iconTheme: IconThemeData(color: Colors.blue),
+        actions: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, LoginScreen.id);
+              },
+              child: Icon(Icons.arrow_back))
+        ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance

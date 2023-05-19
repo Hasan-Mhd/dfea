@@ -1,13 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfea2/donation_types_screen.dart';
+import 'package:dfea2/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'component/payment_screen.dart';
 
-class DonationDetailsScreen extends StatelessWidget {
+class DonationDetailsScreen extends StatefulWidget {
   late QueryDocumentSnapshot<Object?> donation;
 
   DonationDetailsScreen({required this.donation});
+
+  @override
+  State<DonationDetailsScreen> createState() => _DonationDetailsScreenState();
+}
+
+class _DonationDetailsScreenState extends State<DonationDetailsScreen> {
+  late int amountDonated;
+  @override
+  void initState() {
+    amountDonated = widget.donation['amountDonated'];
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +31,12 @@ class DonationDetailsScreen extends StatelessWidget {
           child: Column(
             children: [
               Hero(
-                tag: '${donation['name']}',
+                tag: '${widget.donation['userId']}',
                 child: Container(
                   height: 250,
                   child: Image(
                     image: NetworkImage(
-                      donation['photoUrl'],
+                      widget.donation['photoUrl'],
                     ),
                   ),
                 ),
@@ -30,15 +44,15 @@ class DonationDetailsScreen extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              Text('${donation['name']}'),
+              Text('${widget.donation['name']}'),
               Card(
                 color: Color(0xFFfeb800),
                 shape: ContinuousRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(50))),
                 child: Center(
                   child: Container(
-                    width: 200,
-                    height: 200,
+                    width: 250,
+                    height: 300,
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -46,8 +60,8 @@ class DonationDetailsScreen extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            '${donation['notes']}',
-                            style: TextStyle(color: Colors.white),
+                            '${widget.donation['notes']}',
+                            style: TextStyle(color: Colors.white, fontSize: 18),
                           ),
                           SizedBox(
                             height: 20,
@@ -66,9 +80,15 @@ class DonationDetailsScreen extends StatelessWidget {
                           ),
                           Center(
                             child: Text(
-                              '${donation['amount']} INR',
+                              '${widget.donation['amount']} INR',
                               style: TextStyle(color: Colors.white),
                             ),
+                          ),
+                          Text(
+                            'Amount Donated :$amountDonated ',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 20,
@@ -88,13 +108,32 @@ class DonationDetailsScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => PaymentTypes(
-                        donation: donation,
+                        donation: widget.donation,
                       ),
                     ),
                   );
                 },
                 child: Text(
                   'Donate Now',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    Color(0xFFfeb800),
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfileScreen(),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Chick your profile',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 style: ButtonStyle(
