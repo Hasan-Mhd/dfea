@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfea2/component/pdf_viewer_method.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -15,6 +16,12 @@ class AdminScreen extends StatelessWidget {
   Future<String?> getDocumentUrl(String documentId) async {
     final ref =
         FirebaseStorage.instance.ref('donations/$documentId/$documentId');
+    final url = await ref.getDownloadURL();
+    return url;
+  }
+
+  Future<String?> getPhotoUrl(String documentId) async {
+    final ref = FirebaseStorage.instance.ref('photos/$documentId');
     final url = await ref.getDownloadURL();
     return url;
   }
@@ -109,6 +116,36 @@ class AdminScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Center(
+                        child: Container(
+                          height: 180,
+                          width: 180,
+                          child: FutureBuilder<String?>(
+                            future: getPhotoUrl(documentId),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              } else if (snapshot.hasData) {
+                                return CachedNetworkImage(
+                                  imageUrl: snapshot.data!,
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                  fit: BoxFit.cover,
+                                  width: 100,
+                                  height: 100,
+                                );
+                              } else {
+                                return Container(
+                                  child: Text('No data'),
+                                ); // or any other default widget
+                              }
+                            },
+                          ),
+                        ),
+                      ),
                       Text(
                         'Name: ${donation['name']}',
                         style: const TextStyle(

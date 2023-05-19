@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
@@ -20,6 +21,7 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
   String? _amount;
   String? _notes;
   File? _selectedFile;
+  File? _selectedPhoto;
 
   void _pickFile() async {
     final result = await FilePicker.platform.pickFiles();
@@ -27,6 +29,42 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
       setState(() {
         _selectedFile = File(result.files.single.path!);
       });
+    }
+  }
+
+  void _pickPhoto() async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      setState(() {
+        _selectedPhoto = File(result.files.single.path!);
+      });
+    }
+  }
+
+  void _uploadPhoto() async {
+    final edocRef = FirebaseFirestore.instance.collection('donations').doc();
+    String? documentId;
+    if (_selectedPhoto != null) {
+      documentId = edocRef.id;
+      final fileName = path.basename(_selectedPhoto!.path);
+      final storageRef = FirebaseStorage.instance.ref('photos/$documentId');
+
+      try {
+        await storageRef.putFile(_selectedPhoto!);
+        final photoUrl = await storageRef.getDownloadURL();
+        await edocRef.update({'photoUrl': photoUrl});
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Photo uploaded successfully.')),
+        );
+
+        // Do something with the photo URL, e.g., save it to Firestore.
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error uploading photo.')),
+        );
+        print(e);
+      }
     }
   }
 
@@ -48,6 +86,7 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
         'amount': _amount,
         'notes': _notes,
         'approved': false,
+        'userId': FirebaseAuth.instance.currentUser!.uid,
       });
       documentId = docRef.id;
       if (_selectedFile != null) {
@@ -67,6 +106,31 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
       );
       print(e);
       return;
+    }
+    if (_selectedPhoto != null) {
+      documentId = docRef.id;
+      // final fileName = path.basename(_selectedPhoto!.path);
+      final storageRef = FirebaseStorage.instance.ref('photos/$documentId');
+
+      try {
+        await storageRef.putFile(_selectedPhoto!);
+        final photoUrl = await storageRef.getDownloadURL();
+        await docRef.update({'photoUrl': photoUrl});
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Photo uploaded successfully.')),
+        );
+
+        // Do something with the photo URL, e.g., save it to Firestore.
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error uploading photo.')),
+        );
+        print(e);
+      }
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('choose  photo.')));
     }
   }
 
@@ -185,10 +249,23 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
               ),
               if (_selectedFile != null)
                 Padding(
-                  padding: EdgeInsets.only(top: 16),
-                  child: Text('Selected file: ${_selectedFile!.path}'),
+                  padding: EdgeInsets.only(top: 5),
+                  child: Text('Done!',
+                      style: TextStyle(color: Colors.greenAccent)),
                 ),
-              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _pickPhoto,
+                child: Text('Upload photo'),
+              ),
+              if (_selectedPhoto != null)
+                Padding(
+                  padding: EdgeInsets.only(top: 5),
+                  child: Text(
+                    'Done!',
+                    style: TextStyle(color: Colors.greenAccent),
+                  ),
+                ),
+              SizedBox(height: 5),
               ElevatedButton(
                 onPressed: _submitForm,
                 child: Text('Submit Donation'),

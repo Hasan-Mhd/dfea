@@ -4,6 +4,7 @@ import 'package:dfea2/donation_list_screen.dart';
 import 'package:dfea2/donation_screen.dart';
 import 'package:dfea2/home_page.dart';
 import 'package:dfea2/signup_screen.dart';
+import 'package:dfea2/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 import 'login_screen.dart';
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: HomePage.id,
+      initialRoute: SplashScreen.id,
       routes: {
+        SplashScreen.id: (context) => SplashScreen(),
         HomePage.id: (context) => HomePage(),
         LoginScreen.id: (context) => LoginScreen(),
         SignupScreen.id: (context) => SignupScreen(),

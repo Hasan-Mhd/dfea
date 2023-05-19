@@ -52,18 +52,26 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 5),
                 child: InputField(
-                    'Email', Icons.mail, TextInputType.emailAddress, false,
-                    (value) {
-                  email = value;
-                }),
+                  'Email',
+                  Icons.mail,
+                  TextInputType.emailAddress,
+                  false,
+                  (value) {
+                    email = value;
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 5),
                 child: InputField(
-                    'Password', Icons.password, TextInputType.text, true,
-                    (value) {
-                  password = value;
-                }),
+                  'Password',
+                  Icons.password,
+                  TextInputType.text,
+                  true,
+                  (value) {
+                    password = value;
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
