@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 
 class DonationFormWidget extends StatefulWidget {
+  const DonationFormWidget({super.key});
+
   @override
   _DonationFormWidgetState createState() => _DonationFormWidgetState();
 }
@@ -55,13 +57,13 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
         await edocRef.update({'photoUrl': photoUrl});
 
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Photo uploaded successfully.')),
+          const SnackBar(content: Text('Photo uploaded successfully.')),
         );
 
         // Do something with the photo URL, e.g., save it to Firestore.
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error uploading photo.')),
+          const SnackBar(content: Text('Error uploading photo.')),
         );
         print(e);
       }
@@ -87,6 +89,7 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
         'notes': _notes,
         'approved': false,
         'userId': FirebaseAuth.instance.currentUser!.uid,
+        'amountDonated': 0,
       });
       documentId = docRef.id;
       if (_selectedFile != null) {
@@ -98,11 +101,11 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
         await docRef.update({'documentUrl': url});
       }
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Donation submitted for approval.')),
+        const SnackBar(content: Text('Donation submitted for approval.')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error submitting donation.')),
+        const SnackBar(content: Text('Error submitting donation.')),
       );
       print(e);
       return;
@@ -118,19 +121,19 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
         await docRef.update({'photoUrl': photoUrl});
 
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Photo uploaded successfully.')),
+          const SnackBar(content: Text('Photo uploaded successfully.')),
         );
 
         // Do something with the photo URL, e.g., save it to Firestore.
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error uploading photo.')),
+          const SnackBar(content: Text('Error uploading photo.')),
         );
         print(e);
       }
     } else {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('choose  photo.')));
+          .showSnackBar(const SnackBar(content: Text('choose  photo.')));
     }
   }
 
@@ -138,17 +141,17 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFfeb800),
-        title: Text('Donation Form'),
+        backgroundColor: const Color(0xFFfeb800),
+        title: const Text('Donation Form'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
           child: ListView(
             children: [
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Name',
                   hintText: 'Enter your full name',
                   border: OutlineInputBorder(),
@@ -161,9 +164,9 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
                 },
                 onSaved: (value) => _name = value,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   hintText: 'Enter your email address',
                   border: OutlineInputBorder(),
@@ -180,9 +183,9 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
                 },
                 onSaved: (value) => _email = value,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Phone',
                   hintText: 'Enter your phone number',
                   border: OutlineInputBorder(),
@@ -196,9 +199,9 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
                 },
                 onSaved: (value) => _phone = value,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Address',
                   hintText: 'Enter your address',
                   border: OutlineInputBorder(),
@@ -213,9 +216,9 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
                 },
                 onSaved: (value) => _address = value,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Amount',
                   hintText: 'Enter the amount of your donation',
                   border: OutlineInputBorder(),
@@ -232,9 +235,9 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
                 },
                 onSaved: (value) => _amount = value,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Notes',
                   hintText: 'Enter any notes you have about your donation',
                   border: OutlineInputBorder(),
@@ -243,48 +246,48 @@ class _DonationFormWidgetState extends State<DonationFormWidget> {
                 keyboardType: TextInputType.multiline,
                 onSaved: (value) => _notes = value,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
-                style: ButtonStyle(
+                style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
                     Color(0xFFfeb800),
                   ),
                 ),
                 onPressed: _pickFile,
-                child: Text('Upload Document'),
+                child: const Text('Upload Document'),
               ),
               if (_selectedFile != null)
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(top: 5),
                   child: Text('Done!',
                       style: TextStyle(color: Colors.greenAccent)),
                 ),
               ElevatedButton(
-                style: ButtonStyle(
+                style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
                     Color(0xFFfeb800),
                   ),
                 ),
                 onPressed: _pickPhoto,
-                child: Text('Upload photo'),
+                child: const Text('Upload photo'),
               ),
               if (_selectedPhoto != null)
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(top: 5),
                   child: Text(
                     'Done!',
                     style: TextStyle(color: Colors.greenAccent),
                   ),
                 ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               ElevatedButton(
-                style: ButtonStyle(
+                style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
                     Color(0xFFfeb800),
                   ),
                 ),
                 onPressed: _submitForm,
-                child: Text('Submit Donation'),
+                child: const Text('Submit Donation'),
               ),
             ],
           ),

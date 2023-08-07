@@ -7,7 +7,10 @@ import 'login_screen.dart';
 class ProfileScreen extends StatefulWidget {
   static const String id = 'ProfileScreen';
 
+  const ProfileScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
@@ -45,6 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         });
       }
     } catch (e) {
+      // ignore: avoid_print
       print('Error fetching user data: $e');
     }
   }
@@ -52,6 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     // Check if a user is authenticated
+    // ignore: unnecessary_null_comparison
     if (_user == null) {
       // Navigate to the login screen or any other desired screen
       Navigator.pushNamedAndRemoveUntil(
@@ -61,8 +66,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFfeb800),
-        title: Text('Profile'),
+        backgroundColor: const Color(0xFFfeb800),
+        title: const Text('Profile'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -71,29 +76,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Text(
               'Name: $_userName',
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               'Email: ${_user.email}',
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               'Phone Number: $_phoneNumber',
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => TransactionHistoryScreen()));
+                          builder: (context) => const TransactionHistoryScreen()));
                 },
-                style: ButtonStyle(
+                style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Color(0xFFfeb800)),
                 ),
-                child: Text('Transactions histore'))
+                child: const Text('Transactions histore'))
           ],
         ),
       ),

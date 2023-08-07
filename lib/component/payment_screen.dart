@@ -6,7 +6,7 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 class OneTimePayment extends StatefulWidget {
   final QueryDocumentSnapshot<Object?> donation;
 
-  OneTimePayment({required this.donation});
+  const OneTimePayment({super.key, required this.donation});
 
   @override
   _OneTimePaymentState createState() => _OneTimePaymentState();
@@ -14,7 +14,7 @@ class OneTimePayment extends StatefulWidget {
 
 class _OneTimePaymentState extends State<OneTimePayment> {
   late Razorpay _razorpay;
-  TextEditingController _amountController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
 
   @override
   void initState() {
@@ -64,7 +64,7 @@ class _OneTimePaymentState extends State<OneTimePayment> {
 
     // Show success message or navigate to a success screen
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Payment successful'),
       ),
     );
@@ -115,41 +115,41 @@ class _OneTimePaymentState extends State<OneTimePayment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFfeb800),
-        title: Text('Donation Type'),
+        backgroundColor: const Color(0xFFfeb800),
+        title: const Text('Donation Type'),
         leading: IconButton(
             onPressed: () {
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => DonationScreen()));
+                  MaterialPageRoute(builder: (context) => const DonationScreen()));
             },
-            icon: Icon(Icons.arrow_back)),
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Select Donation Type',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: _amountController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Donation Amount',
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              style: ButtonStyle(
+              style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(
                   Color(0xFFfeb800),
                 ),
               ),
               onPressed: _startPayment,
-              child: Text('Donate Now'),
+              child: const Text('Donate Now'),
             ),
           ],
         ),

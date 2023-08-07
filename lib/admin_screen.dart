@@ -65,7 +65,7 @@ class _AdminScreenState extends State<AdminScreen> {
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('Document not found. Please download it first.'),
           ),
         );
@@ -97,14 +97,14 @@ class _AdminScreenState extends State<AdminScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Donation Requests'),
-        iconTheme: IconThemeData(color: Colors.blue),
+        title: const Text('Donation Requests'),
+        iconTheme: const IconThemeData(color: Colors.blue),
         actions: [
           ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, LoginScreen.id);
               },
-              child: Icon(Icons.arrow_back))
+              child: const Icon(Icons.arrow_back))
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -114,13 +114,13 @@ class _AdminScreenState extends State<AdminScreen> {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: Text('Something went wrong'),
             );
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -128,7 +128,7 @@ class _AdminScreenState extends State<AdminScreen> {
           final donations = snapshot.data!.docs;
 
           if (donations.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No donations to approve'),
             );
           }
@@ -146,7 +146,7 @@ class _AdminScreenState extends State<AdminScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
-                        child: Container(
+                        child: SizedBox(
                           height: 180,
                           width: 180,
                           child: FutureBuilder<String?>(
@@ -154,21 +154,21 @@ class _AdminScreenState extends State<AdminScreen> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return CircularProgressIndicator();
+                                return const CircularProgressIndicator();
                               } else if (snapshot.hasData) {
                                 return CachedNetworkImage(
                                   imageUrl: snapshot.data!,
                                   placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
+                                      const CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                      const Icon(Icons.error),
                                   fit: BoxFit.cover,
                                   width: 100,
                                   height: 100,
                                 );
                               } else {
                                 return Container(
-                                  child: Text('No data'),
+                                  child: const Text('No data'),
                                 ); // or any other default widget
                               }
                             },
@@ -204,12 +204,12 @@ class _AdminScreenState extends State<AdminScreen> {
                         children: [
                           IconButton(
                             onPressed: () => _approveDonation(donation),
-                            icon: Icon(Icons.check),
+                            icon: const Icon(Icons.check),
                             color: Colors.green,
                           ),
                           IconButton(
                             onPressed: () => _disapproveDonation(donation),
-                            icon: Icon(Icons.close),
+                            icon: const Icon(Icons.close),
                             color: Colors.red,
                           ),
                           IconButton(
@@ -228,7 +228,7 @@ class _AdminScreenState extends State<AdminScreen> {
                                 );
                               }
                             },
-                            icon: Icon(Icons.attachment),
+                            icon: const Icon(Icons.attachment),
                             color: Colors.blue,
                           ),
                           // IconButton(

@@ -109,12 +109,12 @@ class _DonationMainScreenState extends State<DonationMainScreen> {
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           final data = snapshot.data!.docs;
           if (data.isEmpty) {
             print("empty");
-            return Center(child: Text('No donations yet'));
+            return const Center(child: Text('No donations yet'));
           }
           return ListView.builder(
             shrinkWrap: true,
@@ -133,7 +133,7 @@ class _DonationMainScreenState extends State<DonationMainScreen> {
                   );
                 },
                 child: Card(
-                  surfaceTintColor: Color(0xFFfeb800),
+                  surfaceTintColor: const Color(0xFFfeb800),
                   elevation: 10,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -145,7 +145,7 @@ class _DonationMainScreenState extends State<DonationMainScreen> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 180,
                             height: 180,
                             child: Hero(
@@ -156,7 +156,7 @@ class _DonationMainScreenState extends State<DonationMainScreen> {
                           ),
                         ),
                         Text('${donation['amount']} INR'),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text('${donation['email']}'),
                         // Text(donation['date'].toDate().toString()),
                       ],

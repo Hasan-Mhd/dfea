@@ -32,21 +32,21 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
+              const Padding(
+                padding: EdgeInsets.only(top: 20),
                 child: Text(
                   'Sign in',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
-              Text(
+              const Text(
                 'Welcome back',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 80,
               ),
               Padding(
@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.only(
                     top: 40, left: 90, right: 90, bottom: 30),
                 child: RoundedButton(
-                    colour: Color(0xFFfeb800),
+                    colour: const Color(0xFFfeb800),
                     title: 'Sign in',
                     onPressed: () async {
                       try {
@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SocialLoginButton(
-                      backgroundColor: Color(0xFFf3f2f1),
+                      backgroundColor: const Color(0xFFf3f2f1),
                       borderRadius: 50,
                       text: "",
                       height: 70,
@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => GoogleLoginScreen()));
+                                builder: (context) => const GoogleLoginScreen()));
                       }),
                 ],
               )

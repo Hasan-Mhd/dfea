@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFFfeb800),
+        backgroundColor: const Color(0xFFfeb800),
         body: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Center(
                 child: DefaultTextStyle(
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 35.0,
                     fontWeight: FontWeight.w900,
@@ -33,32 +33,32 @@ class _HomePageState extends State<HomePage> {
                   child: AnimatedTextKit(
                     animatedTexts: [
                       TypewriterAnimatedText('Donation For Education',
-                          speed: Duration(milliseconds: 150))
+                          speed: const Duration(milliseconds: 150))
                     ],
                     repeatForever: true,
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               RoundedButton(
-                  textColour: Color(0xFFfeb800),
+                  textColour: const Color(0xFFfeb800),
                   colour: Colors.white,
                   title: 'Sign up',
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SignupScreen()));
+                            builder: (context) => const SignupScreen()));
                   }),
               RoundedButton(
-                  textColour: Color(0xFFfeb800),
+                  textColour: const Color(0xFFfeb800),
                   colour: Colors.white,
                   title: 'Sign in',
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                        MaterialPageRoute(builder: (context) => const LoginScreen()));
                   }),
             ],
           ),

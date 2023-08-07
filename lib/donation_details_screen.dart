@@ -3,12 +3,11 @@ import 'package:dfea2/donation_types_screen.dart';
 import 'package:dfea2/profile_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'component/payment_screen.dart';
 
 class DonationDetailsScreen extends StatefulWidget {
   late QueryDocumentSnapshot<Object?> donation;
 
-  DonationDetailsScreen({required this.donation});
+  DonationDetailsScreen({super.key, required this.donation});
 
   @override
   State<DonationDetailsScreen> createState() => _DonationDetailsScreenState();
@@ -32,7 +31,7 @@ class _DonationDetailsScreenState extends State<DonationDetailsScreen> {
             children: [
               Hero(
                 tag: '${widget.donation['userId']}',
-                child: Container(
+                child: SizedBox(
                   height: 250,
                   child: Image(
                     image: NetworkImage(
@@ -41,59 +40,59 @@ class _DonationDetailsScreenState extends State<DonationDetailsScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Text('${widget.donation['name']}'),
               Card(
-                color: Color(0xFFfeb800),
-                shape: ContinuousRectangleBorder(
+                color: const Color(0xFFfeb800),
+                shape: const ContinuousRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(50))),
                 child: Center(
-                  child: Container(
+                  child: SizedBox(
                     width: 250,
                     height: 300,
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Text(
                             '${widget.donation['notes']}',
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                            style: const TextStyle(color: Colors.white, fontSize: 18),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Divider(
+                          const Divider(
                             color: Colors.white,
                           ),
-                          Text(
+                          const Text(
                             'Amount Requested ',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Center(
                             child: Text(
                               '${widget.donation['amount']} INR',
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Text(
                             'Amount Donated :$amountDonated ',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                         ],
@@ -102,7 +101,7 @@ class _DonationDetailsScreenState extends State<DonationDetailsScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
@@ -116,14 +115,14 @@ class _DonationDetailsScreenState extends State<DonationDetailsScreen> {
                     ),
                   );
                 },
-                child: Text(
-                  'Donate Now',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                style: ButtonStyle(
+                style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
                     Color(0xFFfeb800),
                   ),
+                ),
+                child: const Text(
+                  'Donate Now',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               ElevatedButton(
@@ -131,18 +130,18 @@ class _DonationDetailsScreenState extends State<DonationDetailsScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfileScreen(),
+                      builder: (context) => const ProfileScreen(),
                     ),
                   );
                 },
-                child: Text(
-                  'Chick your profile',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                style: ButtonStyle(
+                style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
                     Color(0xFFfeb800),
                   ),
+                ),
+                child: const Text(
+                  'Chick your profile',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             ],

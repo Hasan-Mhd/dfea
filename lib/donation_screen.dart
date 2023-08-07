@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dfea2/component/donation_form.dart';
 import 'package:dfea2/donation_list_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -29,18 +27,18 @@ class _DonationScreenState extends State<DonationScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: MainDrawer(),
+        drawer: const MainDrawer(),
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'Donations',
             style: TextStyle(color: Colors.black),
           ),
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           elevation: 0,
         ),
         backgroundColor: Colors.white,
-        body: DonationMainScreen(),
+        body: const DonationMainScreen(),
       ),
     );
   }

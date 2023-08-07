@@ -75,6 +75,8 @@ import 'package:flutter/material.dart';
 class SplashScreen extends StatefulWidget {
   static const String id = 'Splash_screen';
 
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -89,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2), // Duration of the animation
+      duration: const Duration(seconds: 2), // Duration of the animation
     );
 
     _animation = Tween<double>(
@@ -124,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen>
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
+                colors: const [
                   Color(0xFFfeb800), // Yellow
                   Colors.white,
                 ],
@@ -145,7 +147,7 @@ class _SplashScreenState extends State<SplashScreen>
             ),
           );
         },
-        child: Text(
+        child: const Text(
           'Donation For Education App',
           style: TextStyle(
             fontSize: 28,

@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 class TransactionHistoryScreen extends StatefulWidget {
   static const String id = 'TransactionHistoryScreen';
 
+  const TransactionHistoryScreen({super.key});
+
   @override
   _TransactionHistoryScreenState createState() =>
       _TransactionHistoryScreenState();
@@ -25,8 +27,8 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFfeb800),
-        title: Text('Transaction History'),
+        backgroundColor: const Color(0xFFfeb800),
+        title: const Text('Transaction History'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _firestore
@@ -37,7 +39,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
           if (snapshot.hasData) {
             final transactions = snapshot.data!.docs;
             if (transactions.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text('No transactions found.'),
               );
             } else {
@@ -56,11 +58,11 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
             }
           }
           if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: Text('Error occurred while fetching transactions.'),
             );
           }
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         },

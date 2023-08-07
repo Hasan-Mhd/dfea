@@ -12,6 +12,6 @@ class DonationForm extends StatefulWidget {
 class _DonationFormState extends State<DonationForm> {
   @override
   Widget build(BuildContext context) {
-    return DonationFormWidget();
+    return const DonationFormWidget();
   }
 }

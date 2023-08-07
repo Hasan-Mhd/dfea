@@ -3,11 +3,9 @@ import 'package:dfea2/component/donation_form.dart';
 import 'package:dfea2/donation_list_screen.dart';
 import 'package:dfea2/donation_screen.dart';
 import 'package:dfea2/home_page.dart';
-import 'package:dfea2/profile_screen.dart';
 import 'package:dfea2/signup_screen.dart';
 import 'package:dfea2/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
 import 'admin_login_screen.dart';
 import 'login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,15 +28,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: SplashScreen.id,
       routes: {
-        SplashScreen.id: (context) => SplashScreen(),
-        HomePage.id: (context) => HomePage(),
-        AdminLoginScreen.id: (context) => AdminLoginScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        SignupScreen.id: (context) => SignupScreen(),
-        DonationScreen.id: (context) => DonationScreen(),
-        DonationForm.id: (context) => DonationForm(),
-        AdminScreen.id: (context) => AdminScreen(),
-        DonationMainScreen.id: (context) => DonationMainScreen(),
+        SplashScreen.id: (context) => const SplashScreen(),
+        HomePage.id: (context) => const HomePage(),
+        AdminLoginScreen.id: (context) => const AdminLoginScreen(),
+        LoginScreen.id: (context) => const LoginScreen(),
+        SignupScreen.id: (context) => const SignupScreen(),
+        DonationScreen.id: (context) => const DonationScreen(),
+        DonationForm.id: (context) => const DonationForm(),
+        AdminScreen.id: (context) => const AdminScreen(),
+        DonationMainScreen.id: (context) => const DonationMainScreen(),
       },
       title: 'Flutter Demo',
       theme: ThemeData(

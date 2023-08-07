@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
-  InputField(this.text, this.logo, this.texType, this.visible, this.variable);
+  InputField(this.text, this.logo, this.texType, this.visible, this.variable, {super.key});
 
   String? text;
   late IconData logo;
@@ -11,7 +11,7 @@ class InputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 90,
       width: 500,
       child: Scaffold(
@@ -21,10 +21,10 @@ class InputField extends StatelessWidget {
           keyboardType: texType,
           decoration: InputDecoration(
               filled: true,
-              fillColor: Color(0xFFf3f2f1),
+              fillColor: const Color(0xFFf3f2f1),
               icon: Icon(
                 logo,
-                color: Color(0xFFfeb800),
+                color: const Color(0xFFfeb800),
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -32,11 +32,11 @@ class InputField extends StatelessWidget {
               labelText: text,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: const BorderSide(color: Colors.white),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xFFfeb800),
                 ),
               )),

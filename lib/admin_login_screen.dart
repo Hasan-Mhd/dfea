@@ -19,6 +19,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
 
   void _handleSignIn() async {
     try {
+      // ignore: unused_local_variable
       final user = await _auth.signInWithEmailAndPassword(
         email: email!,
         password: password!,
@@ -49,21 +50,21 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
+              const Padding(
+                padding: EdgeInsets.only(top: 20),
                 child: Text(
                   'Admin Sign in',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
-              Text(
+              const Text(
                 'Welcome ',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 80,
               ),
               Padding(
@@ -72,7 +73,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                   onChanged: (value) {
                     email = value;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email',
                     prefixIcon: Icon(Icons.mail),
                   ),
@@ -84,7 +85,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                   onChanged: (value) {
                     password = value;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Password',
                     prefixIcon: Icon(Icons.password),
                   ),
@@ -99,13 +100,13 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                   bottom: 30,
                 ),
                 child: ElevatedButton(
-                  style: ButtonStyle(
+                  style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
                       Color(0xFFfeb800),
                     ),
                   ),
                   onPressed: _handleSignIn,
-                  child: Text('Sign In'),
+                  child: const Text('Sign In'),
                 ),
               ),
             ],

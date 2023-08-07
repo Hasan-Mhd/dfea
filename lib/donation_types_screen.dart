@@ -7,7 +7,7 @@ import 'component/payment_screen.dart';
 class PaymentTypes extends StatelessWidget {
   final QueryDocumentSnapshot<Object?> donation;
 
-  PaymentTypes({required this.donation});
+  const PaymentTypes({super.key, required this.donation});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class PaymentTypes extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                  style: ButtonStyle(
+                  style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
                       Color(0xFFfeb800),
                     ),
@@ -35,10 +35,10 @@ class PaymentTypes extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Text('One Time Donation'),
+                  child: const Text('One Time Donation'),
                 ),
                 ElevatedButton(
-                    style: ButtonStyle(
+                    style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(
                         Color(0xFFfeb800),
                       ),
@@ -53,7 +53,7 @@ class PaymentTypes extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text('Mounthly Donation'))
+                    child: const Text('Mounthly Donation'))
               ],
             )
           ],

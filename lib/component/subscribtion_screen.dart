@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SubscriptionScreen extends StatefulWidget {
   final QueryDocumentSnapshot<Object?> donation;
-  const SubscriptionScreen({required this.donation});
+  const SubscriptionScreen({super.key, required this.donation});
 
   @override
   _SubscriptionScreenState createState() => _SubscriptionScreenState();
@@ -12,7 +12,7 @@ class SubscriptionScreen extends StatefulWidget {
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
   late Razorpay _razorpay;
-  TextEditingController _amountController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
 
   @override
   void initState() {
@@ -48,7 +48,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
 
     // Show success message or navigate to a success screen
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Payment successful'),
       ),
     );
@@ -80,7 +80,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
 
     if (enteredAmount.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Please enter a valid amount'),
         ),
       );
@@ -114,38 +114,38 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFfeb800),
-        title: Text('Monthly Subscription'),
+        backgroundColor: const Color(0xFFfeb800),
+        title: const Text('Monthly Subscription'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Subscribe for Monthly Donation',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 40),
               child: TextField(
                 controller: _amountController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Subscription Amount',
                   hintText: 'Enter the amount',
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              style: ButtonStyle(
+              style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(
                   Color(0xFFfeb800),
                 ),
               ),
               onPressed: _startPayment,
-              child: Text('Subscribe Now'),
+              child: const Text('Subscribe Now'),
             ),
           ],
         ),
