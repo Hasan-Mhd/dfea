@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:dfea2/admin_screen.dart';
 import 'package:dfea2/component/donation_form.dart';
 import 'package:dfea2/donation_list_screen.dart';
@@ -43,5 +44,24 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
     );
+=======
+import 'package:flutter/material.dart';
+import 'screens/input_page.dart';
+import 'package:dynamic_island/dynamic_island.dart';
+
+void main() => runApp(BMICalculator());
+
+class BMICalculator extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        theme: ThemeData.dark().copyWith(
+          appBarTheme: AppBarTheme(
+            backgroundColor: Color(0xff090C22),
+          ),
+          scaffoldBackgroundColor: Color(0xff090C22),
+        ),
+        home: InputPage());
+>>>>>>> 9f39253 (final)
   }
 }

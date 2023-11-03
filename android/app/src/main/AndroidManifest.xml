@@ -1,7 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.example.dfea2">
    <application
         android:label="dfea2"
+=======
+    package="Hasan.com.bmi_claculator">
+   <application
+        android:label="bmi_claculator"
+>>>>>>> 9f39253 (final)
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

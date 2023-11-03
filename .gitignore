@@ -8,7 +8,10 @@
 .buildlog/
 .history
 .svn/
+<<<<<<< HEAD
 migrate_working_dir/
+=======
+>>>>>>> 9f39253 (final)
 
 # IntelliJ related
 *.iml
@@ -32,6 +35,12 @@ migrate_working_dir/
 .pub/
 /build/
 
+<<<<<<< HEAD
+=======
+# Web related
+lib/generated_plugin_registrant.dart
+
+>>>>>>> 9f39253 (final)
 # Symbolication related
 app.*.symbols
 
